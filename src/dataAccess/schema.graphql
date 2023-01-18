@@ -1,0 +1,79 @@
+query getSingleProject($id: String!) {
+  projects(filters: { id: { equal: $id } }) {
+    id
+    name
+  }
+}
+
+query getProjectMembers($projectId: String!) {
+  projectMembers(projectId: $projectId) {
+    id
+    userId
+    name
+    userId
+    email
+    company
+    lastLogin
+    projectId
+    projectGroups {
+      id
+      name
+    }
+  }
+}
+
+mutation addComment($taskId: String!, $text: String!) {
+  addComment(taskId: $taskId, text: $text) {
+    id
+    added
+    text
+    authorId
+  }
+}
+
+mutation updateTaskStatus($updateTaskId: String!, $status: TaskStatus, $item: taskItem) {
+  updateTask(id: $updateTaskId, status: $status, item: $item) {
+    id
+    status
+  }
+}
+
+query getSingleTaskForTasksPage($reportingSchemaId: String!, $taskId: String!) {
+  tasks(reportingSchemaId: $reportingSchemaId, filters: { id: { equal: $taskId } }) {
+    id
+    name
+    description
+    dueDate
+    authorId
+    status
+    assigneeId
+    assignedGroupId
+    item {
+      ... on GraphQLSchemaCategory {
+        __typename
+        id
+        name
+      }
+      ... on GraphQLSchemaElement {
+        __typename
+        id
+        name
+      }
+    }
+    comments {
+      id
+      added
+      text
+      authorId
+      task {
+        id
+      }
+    }
+  }
+}
+
+query getAccountRoles {
+  account {
+    roles
+  }
+}

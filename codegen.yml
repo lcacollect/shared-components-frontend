@@ -1,0 +1,24 @@
+overwrite: true
+schema: 'http://localhost:4000/graphql'
+documents: 'src/dataAccess/*.graphql'
+hooks:
+  afterAllFileWrite:
+    - 'prettier --write'
+generates:
+  src/dataAccess/introspection.json:
+    plugins:
+      - introspection
+    config:
+      minify: true
+  src/dataAccess/generated.ts:
+    documents: 'src/dataAccess/*.graphql'
+    plugins:
+      - 'typescript'
+      - 'typescript-resolvers'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      withHooks: true
+      withComponent: false
+      withHOC: false
+      federation: true
