@@ -14,17 +14,11 @@ export const Drawers = () => {
 
   const helpTextItems = helpTexts[path]
 
-  const headerContainer = document.querySelector('header')
   const [helpTextOpen, setHelpTextOpen] = useState(false)
-  const [resultsOpen, setResultsOpen] = useState(false)
-  const [topProp, setTopProp] = useState(headerContainer ? headerContainer.clientHeight + 24 : 24)
 
-  const headerObserver = new ResizeObserver((entiries) => {
-    setTopProp(entiries[0].contentRect.width + 24)
-  })
-  headerContainer && headerObserver.observe(headerContainer)
   const items = helpTextItems?.map((notification, index) => (
     <NotificationsDialog
+      test-dataid={`help-text-${index}`}
       key={index}
       title={notification.title}
       body={notification.body}
@@ -46,7 +40,7 @@ export const Drawers = () => {
         overflow: 'hidden',
         width: '100%',
         right: 0,
-        maxWidth: helpTextOpen || resultsOpen ? '475px' : '70px',
+        maxWidth: helpTextOpen ? '475px' : '70px',
         position: 'absolute',
         height: '670px',
         zIndex: 5,
@@ -54,6 +48,7 @@ export const Drawers = () => {
     >
       <Paper
         aria-label='Drawer'
+        data-testid='drawer'
         elevation={5}
         sx={{
           borderRadius: '25px 0 0 25px',

@@ -10,7 +10,6 @@ export default {
         address: null,
         city: null,
         country: null,
-        __typename: 'GraphQLProject',
       },
     ],
   },

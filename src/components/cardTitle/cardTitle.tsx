@@ -41,6 +41,7 @@ export const CardTitle = (props: CardTitleProps) => {
       {title}
       {onClickHandler && (
         <IconButton
+          data-testid='add-icon-button'
           onClick={onClickHandler}
           sx={{ padding: 'unset', marginLeft: '10px', width: `${buttonSize * 1.5}px`, height: `${buttonSize * 1.5}px` }}
         >

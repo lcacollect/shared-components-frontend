@@ -12,8 +12,8 @@ export const ErrorMessage: React.FC<ErrorProps> = ({ error = null }) => {
   }
 
   return (
-    <Box sx={{ padding: 3 }}>
-      <Alert severity='error'>
+    <Box sx={{ padding: 3 }} data-testid='error-message'>
+      <Alert severity='error' data-testid='alert'>
         <AlertTitle>{error.name}</AlertTitle>
         {error.message}
       </Alert>

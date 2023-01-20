@@ -21,5 +21,9 @@ export const DataFetchWrapper = <P extends DataFetchWrapperProps>(props: P & Dat
     return <ErrorMessage error={error} />
   }
 
-  return <ErrorBoundary {...(props as P)}>{children}</ErrorBoundary>
+  return (
+    <ErrorBoundary data-testid='error-boundary' {...(props as P)}>
+      {children}
+    </ErrorBoundary>
+  )
 }
