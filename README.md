@@ -27,12 +27,7 @@ To add a new component:
 To publish a new version:
 
 1. Update the version in `package.json` (remember to follow semver)
-2. When you're satisfied and ready to publish, then run
-
-```shell
-npm run build
-npm publish
-```
+2. When you're satisfied and ready to publish, then create a PR
 
 ## Development Setup with other @lcacollect packages
 
