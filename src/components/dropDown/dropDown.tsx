@@ -19,13 +19,8 @@ export const DropDown: React.FC<DropDownProps> = ({ inputLabel, options, setSele
     </option>
   ))
 
-  React.useEffect(() => {
-    console.log('options: ', options)
-  }, [options])
-
   return (
     <Box sx={{ minWidth: 120, ...sx }} data-testid='drop-down'>
-      <h1>fhjergj</h1>
       <FormControl fullWidth>
         <InputLabel variant='standard' htmlFor='uncontrolled-native'>
           {inputLabel}
