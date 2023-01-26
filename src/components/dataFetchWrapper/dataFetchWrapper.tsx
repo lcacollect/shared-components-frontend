@@ -14,11 +14,11 @@ export const DataFetchWrapper = <P extends DataFetchWrapperProps>(props: P & Dat
   const { loading, error, children } = props
 
   if (loading) {
-    return <Loading />
+    return <Loading data-testid='loading' />
   }
 
   if (error) {
-    return <ErrorMessage error={error} />
+    return <ErrorMessage error={error} data-testid='error-message' />
   }
 
   return (
