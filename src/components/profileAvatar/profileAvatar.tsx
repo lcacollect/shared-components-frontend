@@ -21,9 +21,7 @@ export const ProfileAvatar = (props: ProfileAvatarProps) => {
       {ownerName ? (
         <Avatar data-testid='profile-avatar' {...stringAvatar(ownerName)} />
       ) : nameToShow.length !== 0 ? (
-        <Avatar alt={name} src={imageSrc} data-testid='profile-avatar'>
-          {nameToShow}
-        </Avatar>
+        <Avatar alt={name} src={imageSrc} data-testid='profile-avatar' {...stringAvatar(nameToShow)} />
       ) : (
         <Avatar alt={name} src={imageSrc} data-testid='profile-avatar'>
           <Icon>
