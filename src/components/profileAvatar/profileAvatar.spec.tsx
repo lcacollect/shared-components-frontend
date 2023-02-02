@@ -3,6 +3,7 @@ import React from 'react'
 import { render, cleanup, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import { ProfileAvatar } from './profileAvatar'
+import { profile } from 'console'
 
 describe('profileAvatar', () => {
   afterEach(cleanup)
@@ -25,5 +26,11 @@ describe('profileAvatar', () => {
     expect(container).toBeTruthy()
     expect(await screen.findByTestId('profile-avatar')).toBeInTheDocument()
     expect(container.innerHTML).toContain('image.jpg')
+  })
+
+  it('renders renders avatar with initials', async () => {
+    const { getByTestId } = render(<ProfileAvatar ownerName={'Christian Kongsgaard'} />)
+    const profileAvatar = getByTestId('profile-avatar')
+    expect(profileAvatar.textContent).toBe('CK')
   })
 })
