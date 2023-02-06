@@ -3,7 +3,6 @@ import React from 'react'
 import { render, cleanup, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import { ProfileAvatar } from './profileAvatar'
-import { profile } from 'console'
 
 describe('profileAvatar', () => {
   afterEach(cleanup)

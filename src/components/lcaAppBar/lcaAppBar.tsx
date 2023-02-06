@@ -18,14 +18,12 @@ export const LcaAppBar = () => {
     variables: { id: projectId as string },
     skip: !projectId,
   })
-  // const msal = useMsal()
+
   const [dialogOpen, setDialogOpen] = useState(false)
 
   const match = reg.exec(location.pathname)
   const projectPage = match?.length === 3 ? match[2] : ''
   const projectName = loading || error ? 'No Name' : data?.projects[0]?.name ?? 'No Name'
-
-  // const activeAccount = msal.instance.getAllAccounts().length > 0 ? msal.instance.getAllAccounts()[0] : msal.accounts[0]
 
   return (
     <Box sx={{ zIndex: 100, flexGrow: 1, position: 'sticky', top: '0px' }} aria-label='AppBar' data-testid='app-bar'>
