@@ -1,0 +1,31 @@
+name: TypeScript Package CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    uses: lcacollect/.github/.github/workflows/test-npm.yaml@main
+    with:
+      router_url: ''
+      artifact_name: 'components'
+      aad_client_id: ${{ vars.VITE_AAD_CLIENT_ID }}
+      aad_tenant_id: ${{ vars.VITE_AAD_TENANT_ID }}
+      aad_app_client_id: ${{ vars.VITE_AAD_APP_CLIENT_ID }}
+    secrets: inherit
+
+  publish:
+    if: github.event_name != 'pull_request'
+    uses: lcacollect/.github/.github/workflows/publish-npm.yaml@main
+    needs:
+      - test
+    with:
+      artifact_name: 'components'
+    secrets:
+      npm_token: ${{ secrets.NPM_TOKEN }}
