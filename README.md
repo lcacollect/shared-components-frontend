@@ -41,7 +41,7 @@ You can use `npm link` to set up live reloading of the other `@lcacollect` packa
 
 ## <div id='namingConventionHeader'>Folder Structure and Naming</div>
 
-```python
+```plaintext
 src/ # Contains the source code and components
     __mocks__/ # Contains the mock data and functions for unit tests
     components/ # React components
@@ -57,3 +57,10 @@ src/ # Contains the source code and components
 ## Further Documentation
 
 Further documentation for LCAcollect can be found [here](https://github.com/lcacollect/.github/blob/main/wiki/README.md)
+
+# License
+
+Unless otherwise described, the code in this repository is licensed under the Apache-2.0 License. Please note that some
+modules, extensions or code herein might be otherwise licensed. This is indicated either in the root of the containing
+folder under a different license file, or in the respective file's header. If you have any questions, don't hesitate to
+get in touch with us via [email](mailto:chrk@arkitema.com).
