@@ -51,12 +51,12 @@ query getSingleTaskForTasksPage($reportingSchemaId: String!, $taskId: String!) {
     item {
       ... on GraphQLSchemaCategory {
         __typename
-        id
+        caegoryId: id
         name
       }
       ... on GraphQLSchemaElement {
         __typename
-        id
+        elementId: id
         name
       }
     }
