@@ -1,5 +1,5 @@
 import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material'
-import { Fragment, useState } from 'react'
+import { Fragment, ReactElement, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { Breadcrumb } from '../breadcrumb'
 import { useGetSingleProjectQuery } from '../../dataAccess'
@@ -9,7 +9,17 @@ import { ProfileDialog } from '../profileDialog'
 import { theme } from '../theme'
 import { DataFetchWrapper } from '../dataFetchWrapper'
 
-export const LcaAppBar = () => {
+interface LcaAppBarProps {
+  logo?: ReactElement
+}
+
+export const LcaAppBar = (props: LcaAppBarProps) => {
+  const {
+    logo = (
+      <Logo sx={{ marginLeft: '-5px', paddingTop: '18px', paddingBottom: '17px', height: '5vh', maxHeight: '75px' }} />
+    ),
+  } = props
+
   const reg = /([0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12})\/?(\w+)?/m
 
   const location = useLocation()
@@ -34,9 +44,7 @@ export const LcaAppBar = () => {
         sx={{ backgroundColor: theme.palette.grey[50], maxHeight: '100px' }}
       >
         <Toolbar>
-          <Logo
-            sx={{ marginLeft: '-5px', paddingTop: '18px', paddingBottom: '17px', height: '5vh', maxHeight: '75px' }}
-          />
+          {logo}
           {projectId ? (
             <DataFetchWrapper error={error} loading={loading}>
               <Fragment>
