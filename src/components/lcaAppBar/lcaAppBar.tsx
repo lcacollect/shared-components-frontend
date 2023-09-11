@@ -49,21 +49,23 @@ export const LcaAppBar = (props: LcaAppBarProps) => {
             <DataFetchWrapper error={error} loading={loading}>
               <Fragment>
                 <Breadcrumb projectName={projectName} currentPage={projectPage} data-testid='breadcrumb-in-app-bar' />
-                <Typography sx={{ flexGrow: 1 }} />
-                <IconButton
-                  size='large'
-                  edge='start'
-                  color='inherit'
-                  aria-label='menu'
-                  sx={{ mr: 3, padding: 'unset', height: '3.9vh' }}
-                  onClick={() => setDialogOpen((prevState) => !prevState)}
-                >
-                  <ProfileAvatar />
-                </IconButton>
-                {dialogOpen ? <ProfileDialog /> : null}
               </Fragment>
             </DataFetchWrapper>
           ) : null}
+          <>
+            <Typography sx={{ flexGrow: 1 }} />
+            <IconButton
+              size='large'
+              edge='start'
+              color='inherit'
+              aria-label='menu'
+              sx={{ mr: 3, padding: 'unset', height: '3.9vh' }}
+              onClick={() => setDialogOpen((prevState) => !prevState)}
+            >
+              <ProfileAvatar />
+            </IconButton>
+            {dialogOpen ? <ProfileDialog /> : null}
+          </>
         </Toolbar>
       </AppBar>
     </Box>
