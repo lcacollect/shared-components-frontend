@@ -65,7 +65,7 @@ export const LcaAppBar = (props: LcaAppBarProps) => {
               aria-label='menu'
               sx={{ mr: 3, padding: 'unset', height: '3.9vh' }}
               onClick={() => setDialogOpen((prevState) => !prevState)}
-              disabled={!!(activeAccount && Object.keys(activeAccount).length > 0)}
+              disabled={!(activeAccount && Object.keys(activeAccount).length > 0)}
             >
               <ProfileAvatar />
             </IconButton>
