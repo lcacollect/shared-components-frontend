@@ -8,6 +8,7 @@ import { ProfileAvatar } from '../profileAvatar'
 import { ProfileDialog } from '../profileDialog'
 import { theme } from '../theme'
 import { DataFetchWrapper } from '../dataFetchWrapper'
+import { useMsal } from '@azure/msal-react'
 
 interface LcaAppBarProps {
   logo?: ReactElement
@@ -19,6 +20,9 @@ export const LcaAppBar = (props: LcaAppBarProps) => {
       <Logo sx={{ marginLeft: '-5px', paddingTop: '18px', paddingBottom: '17px', height: '5vh', maxHeight: '75px' }} />
     ),
   } = props
+
+  const msal = useMsal()
+  const activeAccount = msal.instance.getAllAccounts().length > 0 ? msal.instance.getAllAccounts()[0] : msal.accounts[0]
 
   const reg = /([0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12})\/?(\w+)?/m
 
@@ -61,6 +65,7 @@ export const LcaAppBar = (props: LcaAppBarProps) => {
               aria-label='menu'
               sx={{ mr: 3, padding: 'unset', height: '3.9vh' }}
               onClick={() => setDialogOpen((prevState) => !prevState)}
+              disabled={!!(activeAccount && Object.keys(activeAccount).length > 0)}
             >
               <ProfileAvatar />
             </IconButton>

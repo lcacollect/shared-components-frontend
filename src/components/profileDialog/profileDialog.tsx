@@ -1,4 +1,3 @@
-import { useMsal } from '@azure/msal-react'
 import AccountCircleIcon from '@mui/icons-material/AccountCircleOutlined'
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettingsOutlined'
 import HomeIcon from '@mui/icons-material/HomeOutlined'
@@ -18,6 +17,7 @@ import { useNavigate } from 'react-router-dom'
 import { useGetAccountRolesQuery } from '../../dataAccess'
 import { ProfileAvatar } from '../profileAvatar'
 import { theme } from '../theme'
+import { useMsal } from '@azure/msal-react'
 
 export const ProfileDialog = () => {
   const navigate = useNavigate()

@@ -13,8 +13,9 @@ export const TableToolbar = () => {
           color,
           fontWeight,
         }}
+        placeholder={''}
       />
-      <GridToolbarFilterButton sx={{ color, fontWeight }} />
+      <GridToolbarFilterButton sx={{ color, fontWeight }} placeholder={''} />
     </GridToolbarContainer>
   )
 }
