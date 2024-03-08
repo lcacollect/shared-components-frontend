@@ -4,12 +4,14 @@ import React, { ReactNode, useEffect, useMemo, useState } from 'react'
 import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
 import { SilentRequest } from '@azure/msal-browser'
+import { removeTypenameFromVariables } from '@apollo/client/link/remove-typename'
 
 interface ApolloTokenProviderProps {
   children: ReactNode
   apolloRouterUrl: string
   aadAppClientId: string
 }
+
 export const ApolloTokenProvider: React.FC<ApolloTokenProviderProps> = ({
   children,
   apolloRouterUrl,
@@ -19,6 +21,7 @@ export const ApolloTokenProvider: React.FC<ApolloTokenProviderProps> = ({
   const [token, setToken] = useState<string | undefined>(undefined)
 
   const httpLink = createHttpLink({ uri: apolloRouterUrl })
+  const removeTypenameLink = removeTypenameFromVariables()
   const authLink = setContext(async (_, { headers }) => {
     const authToken = token || (await acquireToken())
     return {
@@ -60,13 +63,13 @@ export const ApolloTokenProvider: React.FC<ApolloTokenProviderProps> = ({
   const client = useMemo(
     () =>
       new ApolloClient({
-        link: from([authLink, errorLink, httpLink]),
+        link: from([authLink, errorLink, removeTypenameLink, httpLink]),
         headers: {
           Authorization: 'Bearer ' + token,
         },
         cache: new InMemoryCache(),
       }),
-    [errorLink, httpLink, authLink, token],
+    [errorLink, httpLink, authLink, token, removeTypenameLink],
   )
 
   const acquireToken = async () => {
